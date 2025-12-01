@@ -28,7 +28,7 @@ document.body.addEventListener('mouseover', (e) => {
         const name = target.getAttribute('data-name');
         const xp = target.getAttribute('data-xp');
         const date = target.getAttribute('data-date');
-        
+
         tooltip.style.display = 'block';
         tooltip.innerHTML = `
             <strong>${name}</strong><br>
@@ -233,7 +233,7 @@ function renderDashboard() {
     // Header
     const header = document.createElement('div');
     header.className = 'profile-header';
-    
+
     // Calculate Audit Ratio percentages
     const totalAudit = state.user.totalUp + state.user.totalDown;
     const upPercent = totalAudit ? (state.user.totalUp / totalAudit) * 100 : 0;
@@ -272,7 +272,7 @@ function renderDashboard() {
     // Total XP Card
     const totalXP = state.xpData.reduce((acc, curr) => acc + curr.amount, 0);
     const xpCard = createStatCard('Total XP', `${(totalXP / 1000).toFixed(0)} kB`);
-    
+
     // Projects Passed Card
     const passedProjects = state.progressData.filter(p => p.grade >= 1).length;
     const projectCard = createStatCard('Projects Passed', passedProjects);
@@ -325,7 +325,7 @@ function createStatCard(title, value) {
 function createXPBarChartString(transactions) {
     // Process data: Group by month/date to avoid too many bars
     // Or just take the last 20 transactions for simplicity
-    const data = transactions.slice(-20); 
+    const data = transactions.slice(-20);
     if (data.length === 0) return '<svg></svg>';
 
     const maxVal = Math.max(...data.map(d => d.amount));
@@ -398,7 +398,7 @@ function createPassFailPieChartString(progress) {
         const largeArcFlag = sliceAngle > Math.PI ? 1 : 0;
 
         const pathData = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
-        
+
         const ratio = ((slice.value / total) * 100).toFixed(1);
 
         pathsHtml += `<path 
